@@ -1,1 +1,46 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signal Bot</title>
+<style>
+body {
+  background: #101827;
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 25px;
+}
+h1 { color: #42d9ff; }
+.signal {
+  font-size: 35px;
+  font-weight: bold;
+  margin: 30px;
+}
+button {
+  padding: 14px 25px;
+  margin: 8px;
+  border: 0;
+  border-radius: 10px;
+  font-size: 18px;
+}
+.up { background: #16c784; }
+.down { background: #ea3943; color: white; }
+.wait { background: #f0b90b; }
+</style>
+</head>
+<body>
+<h1>Olymptrade Signal Bot</h1>
+<p>Demo Signal Panel</p>
+<div class="signal" id="signal">WAIT</div>
+<button class="up" onclick="showSignal('UP')">UP</button>
+<button class="down" onclick="showSignal('DOWN')">DOWN</button>
+<button class="wait" onclick="showSignal('WAIT')">WAIT</button>
+<p>Manual demo only — not a real prediction.</p>
+<script>
+function showSignal(value) {
+  document.getElementById('signal').textContent = value;
+}
+</script>
+</body>
+</html>```
