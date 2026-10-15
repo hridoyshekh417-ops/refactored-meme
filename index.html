@@ -10,8 +10,7 @@ body{margin:0;background:#101827;color:white;font-family:Arial,sans-serif;text-a
 .card{max-width:420px;margin:25px auto;background:#1e293b;padding:22px;border-radius:18px}
 h2{color:#60a5fa}
 .signal{font-size:36px;font-weight:bold;margin:20px}
-button{padding:13px;margin:5px;border:0;border-radius:9px;font-size:17px;font-weight:bold}
-.up{background:#16a34a;color:white}.down{background:#dc2626;color:white}.wait{background:#eab308;color:#111}
+button{padding:13px;margin:5px;border:0;border-radius:9px;font-size:17px;font-weight:bold;background:#2563eb;color:white}
 .note{font-size:13px;color:#cbd5e1;line-height:1.6}
 </style>
 </head>
@@ -20,28 +19,23 @@ button{padding:13px;margin:5px;border:0;border-radius:9px;font-size:17px;font-we
 <h2>EUR/USD OTC</h2>
 <p>১ মিনিট সিগন্যাল ডেমো</p>
 <div class="signal" id="signal">WAIT</div>
-<p id="reason">নমুনা ডেটা বিশ্লেষণের জন্য নিচে চাপ দিন</p>
-<button class="up" onclick="analyze()">বিশ্লেষণ করুন</button>
-<p class="note">এটি নমুনা ক্যান্ডেলের ডেটা দিয়ে কাজ করে। লাইভ মার্কেট ডেটা নয়।</p>
+<p id="reason">বিশ্লেষণ করতে নিচের বাটনে চাপ দিন</p>
+<button onclick="analyze()">বিশ্লেষণ করুন</button>
+<p class="note">এটি শুধু নমুনা ডেটার ডেমো। লাইভ মার্কেট ডেটা নয় এবং ট্রেডিং নির্দেশনা নয়।</p>
 </div>
 <script>
+const samples = [
+ {signal:"UP", reason:"নমুনা ক্যান্ডেলে ঊর্ধ্বমুখী প্রবণতা"},
+ {signal:"DOWN", reason:"নমুনা ক্যান্ডেলে নিম্নমুখী প্রবণতা"},
+ {signal:"WAIT", reason:"নমুনা ডেটায় স্পষ্ট দিক নেই"}
+];
+let index = 0;
 function analyze(){
- const candles=[
-  {open:1.1000,close:1.1004},
-  {open:1.1004,close:1.1007},
-  {open:1.1007,close:1.1003},
-  {open:1.1003,close:1.1008},
-  {open:1.1008,close:1.1010}
- ];
- let score=0;
- candles.forEach(c=>{score+=c.close>c.open?1:c.close<c.open?-1:0});
- let signal="WAIT",reason="নমুনা ডেটায় স্পষ্ট দিক নেই";
- if(score>=3){signal="UP";reason="নমুনা ক্যান্ডেলে ঊর্ধ্বমুখী প্রবণতা";}
- if(score<=-3){signal="DOWN";reason="নমুনা ক্যান্ডেলে নিম্নমুখী প্রবণতা";}
- document.getElementById("signal").textContent=signal;
- document.getElementById("reason").textContent=reason;
+ const result = samples[index];
+ document.getElementById("signal").textContent = result.signal;
+ document.getElementById("reason").textContent = result.reason;
+ index = (index + 1) % samples.length;
 }
 </script>
 </body>
 </html>
-
